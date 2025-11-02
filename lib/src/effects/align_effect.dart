@@ -27,8 +27,13 @@ class AlignEffect extends Effect<Alignment> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
-    Animation<Alignment> animation = buildAnimation(controller, entry);
+    Animation<Alignment> animation = buildAnimation(
+      controller,
+      entry,
+      curvedAnimations: curvedAnimations,
+    );
     return getOptimizedBuilder<Alignment>(
       animation: animation,
       builder: (_, __) {

@@ -56,9 +56,14 @@ class ShaderEffect extends Effect<double> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
     double ratio = 1 / MediaQuery.of(context).devicePixelRatio;
-    Animation<double> animation = buildAnimation(controller, entry);
+    Animation<double> animation = buildAnimation(
+      controller,
+      entry,
+      curvedAnimations: curvedAnimations,
+    );
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) {

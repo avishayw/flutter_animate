@@ -54,6 +54,7 @@ class ListenEffect extends Effect<double> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
     // build an animation without a curve, so we get a linear 0-1 value back so we can determine start / end.
     Animation<double> animation = entry.buildAnimation(

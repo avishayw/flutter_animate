@@ -27,9 +27,14 @@ class FadeEffect extends Effect<double> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
     return FadeTransition(
-      opacity: buildAnimation(controller, entry),
+      opacity: buildAnimation(
+        controller,
+        entry,
+        curvedAnimations: curvedAnimations,
+      ),
       child: child,
     );
   }

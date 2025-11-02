@@ -29,8 +29,13 @@ class VisibilityEffect extends Effect<bool> {
   final bool maintain;
 
   @override
-  Widget build(BuildContext context, Widget child,
-      AnimationController controller, EffectEntry entry) {
+  Widget build(
+    BuildContext context,
+    Widget child,
+    AnimationController controller,
+    EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
+  ) {
     double ratio = getEndRatio(controller, entry);
     return getToggleBuilder(
       animation: controller,

@@ -47,8 +47,12 @@ class ColorEffect extends Effect<Color?> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
-    Animation<double> animation = entry.buildAnimation(controller);
+    Animation<double> animation = entry.buildAnimation(
+      controller,
+      curvedAnimations: curvedAnimations,
+    );
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) {
