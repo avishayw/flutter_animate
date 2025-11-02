@@ -283,6 +283,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   bool _isInternalController = false;
   Adapter? _adapter;
   Future<void>? _delayed;
+  final List<CurvedAnimation> _curvedAnimations = [];
 
   @override
   void initState() {
@@ -363,6 +364,11 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     _adapter?.detach();
     _delayed?.ignore();
     _disposeController();
+    // Dispose all CurvedAnimation objects to prevent memory leaks
+    for (final curvedAnimation in _curvedAnimations) {
+      curvedAnimation.dispose();
+    }
+    _curvedAnimations.clear();
     super.dispose();
   }
 
@@ -391,11 +397,17 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // Clear previous CurvedAnimations (they will be recreated in this build)
+    for (final curvedAnimation in _curvedAnimations) {
+      curvedAnimation.dispose();
+    }
+    _curvedAnimations.clear();
+
     Widget child = widget.child, parent = child;
     ReparentChildBuilder? reparent = Animate.reparentTypes[child.runtimeType];
     if (reparent != null) child = (child as dynamic).child;
     for (EffectEntry entry in widget._entries) {
-      child = entry.effect.build(context, child, _controller, entry);
+      child = entry.effect.build(context, child, _controller, entry, _curvedAnimations);
     }
     return reparent?.call(parent, child) ?? child;
   }

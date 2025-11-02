@@ -41,15 +41,19 @@ class Effect<T> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
     return child;
   }
 
   /// Returns an animation based on the controller, entry, and begin/end values.
   Animation<T> buildAnimation(
-      AnimationController controller, EffectEntry entry) {
+    AnimationController controller,
+    EffectEntry entry, {
+    List<CurvedAnimation>? curvedAnimations,
+  }) {
     return entry
-        .buildAnimation(controller)
+        .buildAnimation(controller, curvedAnimations: curvedAnimations)
         .drive(Tween<T>(begin: begin, end: end));
   }
 

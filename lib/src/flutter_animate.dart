@@ -53,12 +53,16 @@ class EffectEntry {
   Animation<double> buildAnimation(
     AnimationController controller, {
     Curve? curve,
+    List<CurvedAnimation>? curvedAnimations,
   }) {
     int ttlT = controller.duration?.inMicroseconds ?? 0;
     int beginT = begin.inMicroseconds, endT = end.inMicroseconds;
-    return CurvedAnimation(
+    final curvedAnimation = CurvedAnimation(
       parent: controller,
       curve: Interval(beginT / ttlT, endT / ttlT, curve: curve ?? this.curve),
     );
+    // Track the CurvedAnimation for proper disposal
+    curvedAnimations?.add(curvedAnimation);
+    return curvedAnimation;
   }
 }
