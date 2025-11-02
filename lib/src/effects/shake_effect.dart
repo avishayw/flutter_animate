@@ -52,12 +52,17 @@ class ShakeEffect extends Effect<double> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
     final bool shouldRotate = rotation != 0;
     final bool shouldTranslate = offset != Offset.zero;
     if (!shouldRotate && !shouldTranslate) return child;
 
-    final Animation<double> animation = buildAnimation(controller, entry);
+    final Animation<double> animation = buildAnimation(
+      controller,
+      entry,
+      curvedAnimations: curvedAnimations,
+    );
     final int count = (entry.duration.inMilliseconds / 1000 * hz).round();
 
     return getOptimizedBuilder<double>(

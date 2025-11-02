@@ -36,6 +36,7 @@ class ToggleEffect extends Effect<void> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
     double ratio = getEndRatio(controller, entry);
     return getToggleBuilder(

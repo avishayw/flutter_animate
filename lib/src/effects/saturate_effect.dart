@@ -35,8 +35,13 @@ class SaturateEffect extends Effect<double> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
-    Animation<double> animation = buildAnimation(controller, entry);
+    Animation<double> animation = buildAnimation(
+      controller,
+      entry,
+      curvedAnimations: curvedAnimations,
+    );
     return getOptimizedBuilder<double>(
       animation: animation,
       builder: (_, __) => ColorFiltered(

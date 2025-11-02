@@ -58,8 +58,13 @@ class FollowPathEffect extends Effect<double> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
-    Animation<double> animation = buildAnimation(controller, entry);
+    Animation<double> animation = buildAnimation(
+      controller,
+      entry,
+      curvedAnimations: curvedAnimations,
+    );
     List<PathMetric> metrics = path.computeMetrics().toList();
     if (metrics.isEmpty) return child;
     PathMetric metric = metrics.first;

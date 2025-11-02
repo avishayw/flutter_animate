@@ -33,9 +33,14 @@ class SlideEffect extends Effect<Offset> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
     return SlideTransition(
-      position: buildAnimation(controller, entry),
+      position: buildAnimation(
+        controller,
+        entry,
+        curvedAnimations: curvedAnimations,
+      ),
       child: child,
     );
   }

@@ -52,6 +52,7 @@ class SwapEffect extends Effect<void> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
     // instead of setting up an animation, we can optimize a bit to calculate the callback time once:
     double ratio = getEndRatio(controller, entry);

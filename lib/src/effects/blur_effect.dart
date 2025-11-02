@@ -33,8 +33,13 @@ class BlurEffect extends Effect<Offset> {
     Widget child,
     AnimationController controller,
     EffectEntry entry,
+    List<CurvedAnimation> curvedAnimations,
   ) {
-    Animation<Offset> animation = buildAnimation(controller, entry);
+    Animation<Offset> animation = buildAnimation(
+      controller,
+      entry,
+      curvedAnimations: curvedAnimations,
+    );
     return getOptimizedBuilder<Offset>(
       animation: animation,
       builder: (_, __) {
